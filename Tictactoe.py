@@ -3,8 +3,6 @@ import time
 from System import System
 pygame.init()
 
-
-
 icon = pygame.image.load("logo.png")
 pygame.display.set_caption("Tic Tac Toe")
 pygame.display.set_icon(icon)
