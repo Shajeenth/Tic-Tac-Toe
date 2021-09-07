@@ -1,6 +1,7 @@
 import pygame
+import sys
 import time
-from System import System
+from System import Game
 pygame.init()
 
 icon = pygame.image.load("logo.png")
@@ -8,24 +9,21 @@ pygame.display.set_caption("Tic Tac Toe")
 pygame.display.set_icon(icon)
 
 screen = pygame.display.set_mode((300, 350))
-board = pygame.image.load('tic_tac_toe.png')
-img_x = pygame.image.load('x.png')
-img_o = pygame.image.load('o.png')
+
+
 mouse_clicks = 0
-ind_x = pygame.image.load('x_indicator.png')
-ind_o = pygame.image.load('o_indicator.png')
-xwin = pygame.image.load('Xwin.png')
-owin = pygame.image.load('Owin.png')
 
-state = [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0]
 
-system = System()
+
+game = Game()
 
 run = True
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+            pygame.quit()
+            sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_clicks += 1
             x, y = pygame.mouse.get_pos()
@@ -126,43 +124,9 @@ while run:
 
 
     screen.fill((0, 0, 0))
-    screen.blit(board,(0,0))
-    if state[0] == 1:
-        screen.blit(img_x, (0, 0))
-    if state[1] == 1:
-        screen.blit(img_x, (100, 0))
-    if state[2] == 1:
-        screen.blit(img_x, (200, 0))
-    if state[3] == 1:
-        screen.blit(img_x, (0, 100))
-    if state[4] == 1:
-        screen.blit(img_x, (100, 100))
-    if state[5] == 1:
-        screen.blit(img_x, (200, 100))
-    if state[6] == 1:
-        screen.blit(img_x, (0, 200))
-    if state[7] == 1:
-        screen.blit(img_x, (100, 200))
-    if state[8] == 1:
-        screen.blit(img_x, (200, 200))
-    if state[0] == 2:
-        screen.blit(img_o, (0, 0))
-    if state[1] == 2:
-        screen.blit(img_o, (100, 0))
-    if state[2] == 2:
-        screen.blit(img_o, (200, 0))
-    if state[3] == 2:
-        screen.blit(img_o, (0, 100))
-    if state[4] == 2:
-        screen.blit(img_o, (100, 100))
-    if state[5] == 2:
-        screen.blit(img_o, (200, 100))
-    if state[6] == 2:
-        screen.blit(img_o, (0, 200))
-    if state[7] == 2:
-        screen.blit(img_o, (100, 200))
-    if state[8] == 2:
-        screen.blit(img_o, (200, 200))
+    game.display(screen)
+    # screen.blit(board,(0,0))
+
 
     if mouse_clicks%2 == 1:
         screen.blit(ind_o, (0, 300))
