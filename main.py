@@ -1,7 +1,7 @@
 import pygame
 import sys
 import time
-from System import Game
+from TicTacToe import TicTacToe
 import random
 pygame.init()
 
@@ -11,7 +11,7 @@ pygame.display.set_icon(icon)
 
 screen = pygame.display.set_mode((300, 350))
 mouse_clicks = 0
-game = Game()
+game = TicTacToe()
 
 run = True
 while run:

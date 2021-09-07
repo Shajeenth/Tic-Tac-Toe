@@ -2,7 +2,7 @@ import pygame
 
 state = [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0]
 
-class Game:
+class TicTacToe:
     board = pygame.image.load('tic_tac_toe.png')    
     img_x = pygame.image.load('x.png')
     img_o = pygame.image.load('o.png')
