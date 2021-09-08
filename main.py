@@ -10,7 +10,6 @@ pygame.display.set_caption("Tic Tac Toe")
 pygame.display.set_icon(icon)
 
 screen = pygame.display.set_mode((300, 350))
-mouse_clicks = 0
 game = TicTacToe()
 
 run = True
