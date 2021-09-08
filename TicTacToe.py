@@ -11,10 +11,7 @@ class TicTacToe:
     owin = pygame.image.load('Owin.png')
 
     def __init__(self):
-        self.state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-        self.o_win = False
-        self.x_win = False
-        self.turn = 0
+        self.reset()
 
     def move(self, pos):
         i, j = pos
@@ -25,18 +22,15 @@ class TicTacToe:
         self.turn = (self.turn + 1) % 2
 
     def check_horizontal(self):
-        # Can be refactored
         for i in self.state:
-            if all(element == 1 for element in i):
-                return 1
-            elif all(element == 2 for element in i):
-                return 2
+            if i[0] != 0 and all(element == i[0] for element in i):
+                return i[0]
         return 0
     
     def check_vertical(self):
         for i in range(len(self.state)):
             col = [row[i] for row in self.state]
-            if all(element == col[0] for element in col):
+            if col[0] != 0 and all(element == col[0] for element in col):
                 return col[0]
         return 0
             
@@ -47,15 +41,8 @@ class TicTacToe:
         return 0
 
     def check_winner(self):
-        if self.check_vertical():
-            return self.check_vertical()
-        elif self.check_horizontal():
-            return self.check_horizontal()
-        elif self.check_diagonal():
-            return self.check_diagonal()
-        
-        return 0
-    
+        return self.check_vertical() or self.check_horizontal() or self.check_diagonal()
+ 
     def display(self, screen):
         screen.blit(self.board, (0,0))
         self.update_board(screen)
@@ -78,3 +65,7 @@ class TicTacToe:
                     screen.blit(self.img_x, (j*100, i*100))
                 elif cell == 2:
                     screen.blit(self.img_o, (j*100, i*100))
+
+    def reset(self):
+        self.state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        self.turn = 0 
