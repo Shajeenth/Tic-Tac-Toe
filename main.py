@@ -20,6 +20,7 @@ while run:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            print(pygame.mouse.get_pos())
             j, i = [ x // 100 for x in pygame.mouse.get_pos()]
             game.move((i, j))
 

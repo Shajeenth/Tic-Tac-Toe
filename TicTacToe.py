@@ -2,6 +2,7 @@ import pygame
 
 
 class TicTacToe:
+    # Static Variables
     board = pygame.image.load('tic_tac_toe.png')    
     img_x = pygame.image.load('x.png')
     img_o = pygame.image.load('o.png')
@@ -12,6 +13,10 @@ class TicTacToe:
 
     def __init__(self):
         self.reset()
+    
+    def reset(self):
+        self.state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        self.turn = 0 
 
     def move(self, pos):
         i, j = pos
@@ -20,6 +25,14 @@ class TicTacToe:
 
     def next_turn(self):
         self.turn = (self.turn + 1) % 2
+
+    def check_horizontal_long(self):
+        for i in self.state:
+            if i == [1,1,1]:
+                return 1
+            if i == [2,2,2]:
+                return 2
+        return 0 
 
     def check_horizontal(self):
         for i in self.state:
@@ -41,7 +54,7 @@ class TicTacToe:
         return 0
 
     def check_winner(self):
-        return self.check_vertical() or self.check_horizontal() or self.check_diagonal()
+        return self.check_vertical() or self.check_horizontal_long() or self.check_diagonal()
  
     def display(self, screen):
         screen.blit(self.board, (0,0))
@@ -66,6 +79,3 @@ class TicTacToe:
                 elif cell == 2:
                     screen.blit(self.img_o, (j*100, i*100))
 
-    def reset(self):
-        self.state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-        self.turn = 0 
